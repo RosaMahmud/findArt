@@ -1,0 +1,9 @@
+.feed{
+    flex:6.5;
+    /* navbar's height is 50px, so the sidebar will not overlap with the navbar */
+    height: calc(100vh - 50px);
+    /* background-color: #e1e4e7; */
+}
+.feedWrapper{
+    padding: 20px;
+}

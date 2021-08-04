@@ -1,0 +1,146 @@
+export const Users = [
+    {
+        id:1,
+    dp: "/images/profile picture/fairuz.jpg",
+    username:"Fairuz Humaira",
+    },
+    {
+        id:2,
+    dp: "/images/profile picture/fairuzz.png",
+    username:"Humaira Fairuz",
+    },
+    {
+        id:3,
+    dp: "/images/profile picture/faiza.jpg",
+    username:"Mahdia Faiza",
+    },
+    {
+        id:4,
+    dp: "/images/profile picture/humaira.jpg",
+    username:"Cat Mom",
+    },
+    {
+        id:5,
+    dp: "/images/profile picture/jamil.png",
+    username:"Jamilur Rahman",
+    },
+    {
+        id:6,
+    dp: "/images/profile picture/lahm.jpg",
+    username:"Sakib Raihan",
+    },
+    {
+        id:7,
+    dp: "/images/profile picture/rosa.png",
+    username:"Rosa Mahmud",
+    },
+    {
+        id:8,
+    dp: "/images/profile picture/sakib.jpeg",
+    username:"Lahm Raihan",
+    },
+    {
+        id:9,
+    dp: "/images/profile picture/shadman.jpg",
+    username:"Shadman Islam",
+    },
+    {
+        id:10,
+    dp: "/images/profile picture/shaan.jpeg",
+    username:"Shaan Rahman",
+    }
+   
+];
+
+export const Posts = [
+    {
+        id:10,
+        desc: "dg erger r ",
+        photo: "/images/posts/10.jpg",
+        date: " 10 mins ago",
+        userId:10,
+        like: 3,
+        comment:5 ,
+    },
+    {
+        id:1,
+        desc: "fbd fderf dfg",
+        photo: "/images/posts/1.jpeg",
+        date: "5 mins ago",
+        userId:1,
+        like: 5,
+        comment: 9 ,
+    },
+    {
+        id:2,
+        desc: "edfe rge",
+        photo: "/images/posts/2.jpeg",
+        date: "17 mins ago",
+        userId:2,
+        like: 7 ,
+        comment: 8,
+    },
+    {
+        id:3,
+        desc: "gu uytj u",
+        photo: "/images/posts/3.jpg",
+        date: "35 mins ago",
+        userId:3,
+        like:6 ,
+        comment:87 ,
+    },
+    {
+        id:4,
+        desc: "tyuut yu ty",
+        photo: "/images/posts/4.jpg",
+        date: "7 hours ago",
+        userId:4,
+        like:67  ,
+        comment: 56,
+    },
+    {
+        id:5,
+        desc: "hv gh",
+        photo: "/images/posts/5.jpg",
+        date: "1 day ago",
+        userId:5,
+        like: 7,
+        comment: 67,
+    },
+    {
+        id:6,
+        desc: "fg fg tg",
+        photo: "/images/posts/6.jpg",
+        date: "2 days ago",
+        userId:6,
+        like: 65,
+        comment:76 ,
+    },
+    {
+        id:7,
+        desc: "dfmk jdf",
+        photo: "/images/posts/7.jpeg",
+        date: "2 days ago",
+        userId:7,
+        like: 67 ,
+        comment:9 ,
+    },
+    {
+        id:8,
+        desc: "df r",
+        photo: "/images/posts/8.jpg",
+        date: "3 days ago",
+        userId:8,
+        like: 4,
+        comment: 54,
+    },
+    {
+        id:9,
+        desc: "dfgh dgh",
+        photo: "/images/posts/9.jpg",
+        date: "5 days ago",
+        userId:9,
+        like: 67,
+        comment:34 ,
+    }
+];
