@@ -1,0 +1,30 @@
+.Card{
+    max-width: 600px;
+    text-align: center;
+    margin: fit-content;
+    margin-top: 5px;
+    padding-bottom: 2px;
+}
+ .title{
+    margin: 2px;
+    color: #508b98;
+ }
+ .bigAvatar{
+    width: 60px;
+    height: 60px;
+    margin: 'auto';
+    align-items: center;
+ }
+.input{
+    display: none;
+}
+.textField{
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 300px;
+}
+.submit{
+    margin: auto;
+    margin-bottom: 2px;
+    color: #508b98;
+}
