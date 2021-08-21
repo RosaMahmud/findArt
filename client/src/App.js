@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import EditProfile from "./pages/edit/EditProfile";
 import Type from "./pages/userType/Type";
 import ArtistRegister from "./pages/artistRegister/ArtistRegister";
+import Category from "./pages/category/Category";
 
 import {
   BrowserRouter as Router,
@@ -21,7 +22,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Register />}
+          {user ? <Home /> : <Type />}
         </Route>
         <Route path="/login">
           {user ? <Redirect to="/" /> : <Login />}</Route>
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/userType/Type">
           <Type />
+        </Route>
+        <Route path="/category/Category">
+          <Category />
         </Route>
         <Route path="/artistRegister/ArtistRegister">
           <ArtistRegister />

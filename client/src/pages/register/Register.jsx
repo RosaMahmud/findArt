@@ -10,6 +10,7 @@ export default function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useHistory();
+  const isClient = useRef();
 
   const handleClick = async (e) => {
     e.preventDefault();

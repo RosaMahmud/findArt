@@ -40,6 +40,17 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+
+router.get('/getUsers', async (req,res)=>{
+  try {
+      const user = await User.find(req.body);
+      // const {password,updatedAt, ...other} = user._doc
+      res.status(200).json(user)
+  } catch (error) {
+      res.status(500).json(err); 
+  }
+});
+
 //get a user
 router.get("/", async (req, res) => {
   //user id and username so that i can go to this page using both id and name
@@ -55,6 +66,21 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+//get category 
+router.get("/category", async (req,res) =>{
+  try {
+    const user = await User.findById(req.params.userId);
+    const category = await Promise.all(
+      user.category.map((category)=>{
+        return category
+      })
+    )
+    
+  } catch (err) {
+    res.status(500).json(err)
+    
+  }
+})
 
 //get friends
 router.get("/friends/:userId", async (req, res) => {

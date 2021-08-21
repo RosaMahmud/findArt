@@ -4,12 +4,15 @@ import "./artistRegister.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
+
+
 function ArtistRegister() {
         const username = useRef();
         const email = useRef();
         const password = useRef();
         const passwordAgain = useRef();
         const history = useHistory();
+        const isClient = useRef();
       
         const handleClick = async (e) => {
           e.preventDefault();
@@ -72,15 +75,20 @@ function ArtistRegister() {
             
               
             <div class="dropdown">
-  <button class="dropbtn">Category</button>
-  <div class="dropdown-content">
-  <a href="#">Photographer</a>
-  <a href="#">Musician</a>
-  <a href="#">Painter</a>
-  </div>
-</div>    
+              <select value="category">
+                <option>
+                  Painter
+                </option>
+                <option>
+                  Artist
+                </option>
+                <option>
+                  Musician
+                </option>
+              </select>
+            </div>    
 
-              <button className="artistloginButton" type="submit">
+       <button className="artistloginButton" type="submit">
                 Sign Up
               </button>
               <Link to = "/login/Login">

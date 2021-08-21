@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-
-  //   category:{
-  //     type: String,
-  //      default:'',  
-  //  },
+    category:{
+      type: [String],
+       enum:["Photographer", "Painter", "Cinetamographer", "Makeup Artist", "Dancer", "Actor","Model"]  
+   },
    rating:{
     type: Array,
     default:[]
@@ -63,10 +62,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
-    category: {
-      type: Number,
-      enum: [1, 2, 3],
-    },
+    // category: {
+    //   type: Number,
+    //   enum: [1, 2, 3],
+    // },
   },
   { timestamps: true }
 );
