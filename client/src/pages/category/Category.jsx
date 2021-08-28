@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import UsersList from '../../components/usersList/UsersList';
 import { Link } from "react-router-dom";
-import "../../components/rightbar/rightbar.css";
+import "./category.css";
 
 
 function Category({props}) {
@@ -63,7 +63,7 @@ function Category({props}) {
                 <i className="searchIcon"></i>
             </div> */}
 
-            <div className="container">
+            <div className="categoryContainer">
 
 
            <UsersList 

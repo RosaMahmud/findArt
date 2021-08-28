@@ -4,19 +4,31 @@ import "../../pages/profile/profile.css"
 import "./artist_card.css"
 
 
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+
 function ArtistCard(props) {
     const {username, category, profilePicture, isClient} = props.user;
     
     return (
-        <div className="container">
+        <div className="wrapper">
             <div className="content">
                 {
                     (isClient===false) 
                 ?<Link to={{pathname:`/profile/${username}`, state: {user: props.user}  }} style={{textDecoration:"none", color:"black"}}>
-                <div className="header"><h2>{username}</h2></div>
-                <div><h3 >{category}</h3></div>
+                    <img
+                  src={
+                    profilePicture
+                      ?  profilePicture
+                      : PF + "person/noAvatar.png"
+                  }
+                  alt=""
+                  className="categoryImg"
+                />
+                <div className="header"><h3>{username}</h3></div>
+                <div><span className="CategoryName" >{category}</span></div>
                 </Link>
-                : null
+                : [props.user]+1
                 }
             </div>
             

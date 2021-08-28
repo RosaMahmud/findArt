@@ -18,10 +18,8 @@ function UsersList(props) {
     })
 
     return (
-        <div>
-            <h2>
-                Artists Lists
-            </h2>
+        
+        <div className = "listWrapper">
 
             <div className="categorySearch">
                  <input type="text" 
@@ -31,16 +29,19 @@ function UsersList(props) {
                  onChange={getSearchTerm}
                  ref={inputEl}
                 />
-                <i className="searchIcon"></i>
+                {/* <i className="searchIcon"></i> */}
             </div>
-
+            <h2 className="list">
+                Artists Lists
+            </h2>
+            <div className="container">
             <div className="artist-list">
                 {renderArtistList.length > 0
                 ? renderArtistList
                 : "No Artists Available"}
             
             </div>
-
+        </div>
 
         </div>
 

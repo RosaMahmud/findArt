@@ -57,7 +57,7 @@ export default function Profile() {
                 src={
                   user.coverPicture
                     ? PF + user.coverPicture
-                    : PF + "person/noCover.jpg"
+                    : PF + "post/3.jpeg"
                 }
                 alt=""
               />
@@ -65,12 +65,12 @@ export default function Profile() {
                 className="profileUserImg"
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "person/noAvatar.png"
+                    ?  user.profilePicture
+                    : PF + "post/6.jpeg"
                 }
                 alt=""
               />
-                <PermMedia htmlColor="tomato" className="shareIcon" />
+                {/* <PermMedia htmlColor="tomato" className="shareIcon" /> */}
                 <input
                 style={{ display: "none" }}
                 type="file"

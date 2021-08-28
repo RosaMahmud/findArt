@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema(
   {
     category:{
-      type: [String],
-       enum:["Photographer", "Painter", "Cinetamographer", "Makeup Artist", "Dancer", "Actor","Model"]  
+      type: String 
    },
    rating:{
     type: Array,

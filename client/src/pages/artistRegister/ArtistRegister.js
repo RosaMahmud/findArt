@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef,React, useState } from "react";
 import "./artistRegister.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -12,10 +12,22 @@ function ArtistRegister() {
         const password = useRef();
         const passwordAgain = useRef();
         const history = useHistory();
-        const isClient = useRef();
+        const category = useRef();
+
+        const [items, setValue] = useState([
+          { label: "Photographer",value: "Photographer"},
+          { label: "Dancer", value: "Dancer" },
+          { label: "Painter", value: "Painter" },
+          { label: "Singer", value: "Singer" },
+          { label: "Musician", value: "Musician" },
+          { label: "Guitarist", value: "Guitarist" },
+          
+        ]);
+
       
         const handleClick = async (e) => {
           e.preventDefault();
+          // setItem(items)
           if (passwordAgain.current.value !== password.current.value) {
             passwordAgain.current.setCustomValidity("Passwords don't match!");
           } else {
@@ -23,8 +35,10 @@ function ArtistRegister() {
               username: username.current.value,
               email: email.current.value,
               password: password.current.value,
-              isClient: false,
+              category: category.current.value,
+              isClient: false
             };
+            console.log("user data",user)
             try {
               await axios.post("/auth/register", user);
               history.push("/login");
@@ -72,21 +86,20 @@ function ArtistRegister() {
                 className="loginInput"
                 type="password"
               />
-            
-              
-            <div class="dropdown">
-              <select value="category">
-                <option>
-                  Painter
-                </option>
-                <option>
-                  Artist
-                </option>
-                <option>
-                  Musician
-                </option>
+
+              <select>
+                {items.map(item => (
+                  <option
+                    key={item.value}
+                    ref={category}
+                    onChange={e=>setValue(e.currentTarget.value) }
+                    value={item.value}
+                  >
+                    {item.label}
+                  </option>
+                ))}
               </select>
-            </div>    
+             
 
        <button className="artistloginButton" type="submit">
                 Sign Up

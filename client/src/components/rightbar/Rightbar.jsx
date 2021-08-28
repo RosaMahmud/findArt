@@ -66,79 +66,94 @@ export default function Rightbar({ user }) {
   };
 
   const ProfileRightbar = () => {
-    return (
-      <>
-        {user.username !== currentUser.username && (
-          <button className="rightbarFollowButton" onClick={handleClick}>
-            {followed ? "Unfollow" : "Follow"}
-            {followed ? <Remove /> : <Add />}
-          </button>
-        )}
-        <h4 className="rightbarTitle">User information</h4>
-        <div className="rightbarInfo">
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">{user.city}</span>
-          </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">Rating:</span>
-            <br/>
-            <Star htmlColor="orange" className="ratingStar" />
-            <Star className="ratingStar" />
-            <Star className="ratingStar" />
-            <Star className="ratingStar" />
-            <Star className="ratingStar" />
-            
-            <span className="rightbarInfoValue">{user.rating}</span>
-          </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">Category:</span>
-            <span className="rightbarInfoValue">
-              {user.category === 1
-                ? "Photographer"
-                : user.category === 1
-                ? "Dancer"
-                : "-"}
-            </span>
-          </div>
-        </div>
-
-        <div className="submit">
-            <div className="submitWrapper">
-                <div className="submitTop">
-                    <input placeholder="Leave a Review" className="submitInput"/>
-                </div>
-                <hr className="submitHr"/>
-                <div className="submitBottom">
-                    <button className="submitButton">Submit</button>
-                </div>
+    // if(!user.isClient)
+    {
+      return (
+        <>
+      
+         { user.username !== currentUser.username && !user.isClient &&(
+            <button className="rightbarFollowButton" onClick={handleClick}>
+              {followed ? "Unfollow" : "Follow"}
+              {followed ? <Remove /> : <Add />}
+            </button>
+          )
+          }
+          <h4 className="rightbarTitle">User information</h4>
+          <div className="rightbarInfo">
+            <div className="rightbarInfoItem">
+              <span className="rightbarInfoKey">City:</span>
+              <span className="rightbarInfoValue">{user.city}</span>
             </div>
-        </div>
-          <br/>
-        <h4 className="rightbarTitle">Following</h4>
-        <div className="rightbarFollowings">
-          {friends.map((friend) => (
-            <Link
-              to={"/profile/" + friend.username}
-              style={{ textDecoration: "none" }}
-            >
-              <div className="rightbarFollowing">
-                <img
-                  src={
-                    friend.profilePicture
-                      ? PF + friend.profilePicture
-                      : PF + "person/noAvatar.png"
-                  }
-                  alt=""
-                  className="rightbarFollowingImg"
-                />
-                <span className="rightbarFollowingName">{friend.username}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </>
-    );
+            <div className="rightbarInfoItem">
+              <span className="rightbarInfoKey">Rating:</span>
+              <br/>
+              <Star htmlColor="orange" className="ratingStar" />
+              <Star className="ratingStar" />
+              <Star className="ratingStar" />
+              <Star className="ratingStar" />
+              <Star className="ratingStar" />
+              
+              <span className="rightbarInfoValue">{user.rating}</span>
+            </div>
+            <div className="rightbarInfoItem">
+              <span className="rightbarInfoKey">Category:</span>
+              <span className="rightbarInfoValue">
+                {user.category === 1
+                  ? "Photographer"
+                  : user.category === 1
+                  ? "Dancer"
+                  : "-"}
+              </span>
+            </div>
+          </div>
+
+          { user.username !== currentUser.username && (
+             <div className="submit">
+             <div className="submitWrapper">
+                 <div className="submitTop">
+                     <input placeholder="Leave a Review" className="submitInput"/>
+                 </div>
+                 <hr className="submitHr"/>
+                 <div className="submitBottom">
+                     <button className="submitButton">Submit</button>
+                 </div>
+             </div>
+         </div>
+          )
+          }
+  
+        
+            <br/>
+          <h4 className="rightbarTitle">Following</h4>
+          <div className="rightbarFollowings">
+            {friends.map((friend) => (
+              <Link
+                to={"/profile/" + friend.username}
+                style={{ textDecoration: "none" }}
+              >
+                <div className="rightbarFollowing">
+                  <img
+                    src={
+                      friend.profilePicture
+                        ?  friend.profilePicture
+                        : PF + "person/noAvatar.png"
+                    }
+                    alt=""
+                    className="rightbarFollowingImg"
+                  />
+                  <span className="rightbarFollowingName">{friend.username}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      );
+
+    }
+    return(
+      null
+    )
+    
   };
   return (
     <div className="rightbar">

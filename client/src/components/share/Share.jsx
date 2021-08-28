@@ -53,7 +53,8 @@ export default function Share() {
             alt=""
           />
           <input
-            placeholder={"Share your latest work " + user.username + "!"}
+            placeholder={!user.isClient ? "Share your latest work " + user.username.toUpperCase() + "!"
+                        :"What are you looking for, " + user.username.toUpperCase() + "?" }
             className="shareInput"
             ref={desc}
           />
@@ -67,25 +68,30 @@ export default function Share() {
         )}
         <form className="shareBottom" onSubmit={submitHandler}>
           <div className="shareOptions">
+
+          { (!user.isClient) && (
             <label htmlFor="file" className="shareOption">
-              <PermMedia htmlColor="tomato" className="shareIcon" />
-              <span className="shareOptionText">Photo or Video</span>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                id="file"
-                accept=".png,.jpeg,.jpg"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-            </label>
+            <PermMedia htmlColor="tomato" className="shareIcon" />
+            <span className="shareOptionText">Photo or Video</span>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              id="file"
+              accept=".png,.jpeg,.jpg"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
+          )
+          }
+           
             {/* <div className="shareOption">
               <Label htmlColor="DarkCyan" className="shareIcon" />
               <span className="shareOptionText">Tag</span>
             </div> */}
-            <div className="shareOption">
+            {/* <div className="shareOption">
               <Room htmlColor="green" className="shareIcon" />
               <span className="shareOptionText">Location</span>
-            </div>
+            </div> */}
             {/* <div className="shareOption">
               <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
               <span className="shareOptionText">Feelings</span>

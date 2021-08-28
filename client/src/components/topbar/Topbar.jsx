@@ -1,5 +1,5 @@
 import "./topbar.css";
-import { Search, Person, Chat, Notifications, ExitToApp, Edit } from "@material-ui/icons";
+import { Search, Person,Public, Chat, Notifications, ExitToApp, Edit } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -16,13 +16,15 @@ export default function Topbar() {
         </Link>
       </div>
 
+      <div className="topbarCenter">
       <div className="dropbox">
       <Link to = "/category/Category"style={{ color: "white",  textDecoration: "none"  }}>
-      <span className="categories">Artist Categories</span>
+      <span className="categories">Discover</span>
+      <Public fontSize="small"/>
       </Link>
             </div>
-
-
+    </div>
+{/* 
       <div className="topbarCenter">
         
      
@@ -33,25 +35,12 @@ export default function Topbar() {
             className="searchInput"
           />
         </div>
-      </div>
+      </div> */}
       <div className="topbarRight">
-        {/* <div className="topbarLinks">
-          <Link to = "/edit/EditProfile" style={{ textDecoration: "none" }}>
-          <span className="topbarLink">Edit Profile</span>
-         </Link>
-           <Link to={`/profile/${user.username}`} style={{ textDecoration: "none" }}>
-          <span className="topbarLink">Profile</span>
-          <img
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            }
-            alt=""
-            className="topbarImg"
-          />
-        </Link>
-        </div> */}
+        <div className="topbarLinks">
+        
+         
+        </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
           <Link to={`/profile/${user.username}`} style={{ color: "white" }}>
@@ -71,7 +60,17 @@ export default function Topbar() {
           </div>
          
         </div>
-        <ExitToApp/>
+        <Link to={`/profile/${user.username}`} style={{ textDecoration: "none" }}>
+          <img
+            src={
+              user.profilePicture
+                ?  user.profilePicture
+                : PF + "post/6.jpeg"
+            }
+            alt=""
+            className="topbarImg"
+          />
+        </Link>
         
       </div>
     </div>
