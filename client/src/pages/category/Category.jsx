@@ -22,7 +22,8 @@ function Category({props}) {
               return  Object.values(user)
                .join("")
                .toLowerCase()
-               .includes(searchTerm.toLowerCase());
+               .includes(searchTerm.toLowerCase())
+               ;
            });
            setSearchResults(newUsersList);
        }
@@ -35,7 +36,7 @@ function Category({props}) {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const userList = await axios.get("/users/getUsers");
+                const userList = await axios.get("/users/getArtists");
                 if(userList) setUsers(userList.data);
             } catch (err) {
                 console.log(err);

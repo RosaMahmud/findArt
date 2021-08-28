@@ -51,6 +51,14 @@ router.get('/getUsers', async (req,res)=>{
   }
 });
 
+router.get('/getArtists', async (req,res)=>{
+
+      const artists = await User.find( {isClient:false}, function(err, artists){
+        if(err) return next(err);
+        res.send(artists);
+      });
+    })
+
 //get a user
 router.get("/", async (req, res) => {
   //user id and username so that i can go to this page using both id and name
