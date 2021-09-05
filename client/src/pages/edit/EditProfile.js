@@ -1,106 +1,119 @@
+import React from 'react';
 import "./editProfile.css";
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
-import Avatar from '@material-ui/core/Avatar'
-import FileUpload from '@material-ui/icons/AddPhotoAlternate'
-import { makeStyles } from '@material-ui/core/styles'
-import React, {useEffect, useState} from 'react'
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import Topbar from "../../components/topbar/Topbar";
+import axios from "axios";
 
-const useStyles = makeStyles(theme => ({
-    card: {
-      maxWidth: 600,
-      margin: 'auto',
-      textAlign: 'center',
-      marginTop: theme.spacing(5),
-      paddingBottom: theme.spacing(2)
-    },
-    title: {
-      margin: theme.spacing(2),
-      color: theme.palette.protectedTitle
-    },
-    error: {
-      verticalAlign: 'middle'
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 300
-    },
-    submit: {
-      margin: 'auto',
-      marginBottom: theme.spacing(2)
-    },
-    bigAvatar: {
-      width: 60,
-      height: 60,
-      margin: 'auto'
-    },
-    input: {
-      display: 'none'
-    },
-    filename:{
-      marginLeft:'10px'
-    }
-  }))
 
 function EditProfile() {
 
-    const classes = useStyles()
-  const [values, setValues] = useState({
-    username: '',
-    about: '',
-    profilePicture: '',
-    coverPicture:'',
-    email: '',
-    password: '',
-    redirectToProfile: false,
-    error: '',
-    id: ''
-  })
+  const { user, dispatch } = useContext(AuthContext);
 
-    return (
-        <Card className={classes.card}>
-        <CardContent>
-          <Typography className={classes.title} variant="h6" >
-            Edit Profile
-          </Typography>
-          <Avatar  className={classes.bigAvatar} /><br/>
-          <input  className="input" id="icon-button-file" type="file" />
-          <label htmlFor="icon-button-file">
-            <Button variant="contained" color="default" component="span">
-              Upload Profile Picture
-              <FileUpload/>
-            </Button>
-            <Button variant="contained" color="default" component="span">
-              Upload Cover Picture
-              <FileUpload/>
-            </Button>
-          </label> <span></span><br/>
-          <TextField className={classes.textField}  id="name" label="Name"  margin="normal"/><br/>
-          <TextField className={classes.textField}
-            id="multiline-flexible"
-            label="About"
-            multiline
-            rows="2"
-           
-            margin="normal"
-          /><br/>
-          <TextField className={classes.textField} id="email" type="email" label="Email" margin="normal"/><br/>
-          <TextField className={classes.textField} id="password" type="password" label="Password"  margin="normal"/>
-          <br/> 
-        </CardContent>
-        <CardActions>
-          <Button className={classes.submit} color="CadetBlue" variant="contained">Submit</Button>
-        </CardActions>
-      </Card>
-    
-    )
+  const [file, setFile] = useState(null);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [desc, setDesc] = useState("");
+  const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "UPDATE_START" });
+    const updatedUser = {
+      userId: user._id,
+      username,
+      email,
+      password,
+      desc
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      updatedUser.profilePicture = filename;
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
+    }
+    try {
+      const res = await axios.put("/users/" + user._id, updatedUser);
+      setSuccess(true);
+      dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+    } catch (err) {
+      dispatch({ type: "UPDATE_FAILURE" });
+    }
+  };
+  return (
+    <>
+    <Topbar/>
+    <div className="settings">
+    <div className="settingsWrapper">
+      <div className="settingsTitle">
+        <span className="settingsUpdateTitle">Update Your Account</span>
+        <span className="settingsDeleteTitle">Delete Account</span>
+      </div>
+      <form className="settingsForm"
+       onSubmit={handleSubmit}
+       >
+        <label>Profile Picture</label>
+        <div className="settingsPP">
+          <img
+            src={file ? URL.createObjectURL(file) : PF+user.profilePicture}
+            alt=""
+          />
+          <label htmlFor="fileInput">
+            {/* <i className="settingsPPIcon far fa-user-circle"></i> */}
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none" }}
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+        </div>
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder={user.username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder={user.email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+         <label>Description</label>
+        <input
+          type="text"
+          onChange={(e) => setDesc(e.target.value)}
+        />
+        <button className="settingsSubmit" type="submit">
+          Update
+        </button>
+        {success && (
+          <span
+            style={{ color: "green", textAlign: "center", marginTop: "20px" }}
+          >
+            Profile has been updated...
+          </span>
+        )}
+      </form>
+    </div>
+  </div>
+  </>
+);
 }
+  
 
 
 export default EditProfile

@@ -84,6 +84,23 @@ export default function Rightbar({ user }) {
               <span className="rightbarInfoKey">City:</span>
               <span className="rightbarInfoValue">{user.city}</span>
             </div>
+           
+            { !user.isClient &&(
+         <div className="rightbarInfoItem">
+         <span className="rightbarInfoKey">Category:</span>
+         <span className="rightbarInfoValue">{user.category}</span>
+         {/* <span className="rightbarInfoValue">
+           {user.category === 1
+             ? "Photographer"
+             : user.category === 1
+             ? "Dancer"
+             : "-"}
+         </span> */}
+       </div>
+          )
+          }
+            
+
             <div className="rightbarInfoItem">
               <span className="rightbarInfoKey">Rating:</span>
               <br/>
@@ -95,16 +112,7 @@ export default function Rightbar({ user }) {
               
               <span className="rightbarInfoValue">{user.rating}</span>
             </div>
-            <div className="rightbarInfoItem">
-              <span className="rightbarInfoKey">Category:</span>
-              <span className="rightbarInfoValue">
-                {user.category === 1
-                  ? "Photographer"
-                  : user.category === 1
-                  ? "Dancer"
-                  : "-"}
-              </span>
-            </div>
+
           </div>
 
           { user.username !== currentUser.username && (

@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const userCtrl = require('../controller/user.controller');
 
 //update user
 router.put("/:id", async (req, res) => {
@@ -14,9 +15,11 @@ router.put("/:id", async (req, res) => {
       }
     }
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, {
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, {
         $set: req.body,
-      });
+      },
+      {new:true}
+      );
       res.status(200).json("Account has been updated");
     } catch (err) {
       return res.status(500).json(err);
@@ -53,7 +56,7 @@ router.get('/getUsers', async (req,res)=>{
 
 router.get('/getArtists', async (req,res)=>{
 
-      const artists = await User.find( {isClient:false}, function(err, artists){
+      const artists = await User.find( {isClient:false}, (err, artists)=>{
         if(err) return next(err);
         res.send(artists);
       });
@@ -66,7 +69,7 @@ router.get("/", async (req, res) => {
   const username = req.query.username;
   try {
     const user = userId
-      ? await User.findById(userId)
+      ?  await User.findById(userId)
       : await User.findOne({ username: username });
     const { password, updatedAt, ...other } = user._doc;
     res.status(200).json(other);

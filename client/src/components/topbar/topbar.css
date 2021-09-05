@@ -23,6 +23,8 @@
 
 .topbarCenter {
   flex: 5;
+  margin-right: 15%;
+
 }
 
 .dropbox{
@@ -104,6 +106,7 @@
   cursor: pointer;
   color: white;
   align-items: center;
+  
 }
 .dropbox{
   align-items: center;

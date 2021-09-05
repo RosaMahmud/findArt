@@ -3,10 +3,11 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import {PermMedia} from "@material-ui/icons";
+import { AuthContext } from "../../context/AuthContext";
+
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -56,7 +57,7 @@ export default function Profile() {
                 className="profileCoverImg"
                 src={
                   user.coverPicture
-                    ? PF + user.coverPicture
+                    ? user.coverPicture
                     : PF + "post/3.jpeg"
                 }
                 alt=""
@@ -66,7 +67,7 @@ export default function Profile() {
                 src={
                   user.profilePicture
                     ?  user.profilePicture
-                    : PF + "post/6.jpeg"
+                    : PF + "person/noAvatar.png"
                 }
                 alt=""
               />

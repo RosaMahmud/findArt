@@ -1,5 +1,5 @@
 import "./topbar.css";
-import { Search, Person,Public, Chat, Notifications, ExitToApp, Edit } from "@material-ui/icons";
+import { Public, Notifications, ExitToApp, Edit } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Topbar() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  console.log(user.profilePicture);
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -42,12 +43,12 @@ export default function Topbar() {
          
         </div>
         <div className="topbarIcons">
-          <div className="topbarIconItem">
+          {/* <div className="topbarIconItem">
           <Link to={`/profile/${user.username}`} style={{ color: "white" }}>
             <Person />
             </Link>
-            {/* <span className="topbarIconBadge">1</span> */}
-          </div>
+            <span className="topbarIconBadge">1</span>
+          </div> */}
            <div className="topbarIconItem">
            <Link to = "/edit/EditProfile"style={{ color: "white" }}>
             <Edit />
@@ -60,19 +61,38 @@ export default function Topbar() {
           </div>
          
         </div>
-        <Link to={`/profile/${user.username}`} style={{ textDecoration: "none" }}>
-          <img
-            src={
-              user.profilePicture
-                ?  user.profilePicture
-                : PF + "post/6.jpeg"
-            }
-            alt=""
-            className="topbarImg"
-          />
-        </Link>
+        <Link to={`/profile/${user.username}`}>
+        {user.profilePicture
+                    ?   <img
+                    className="postProfileImg"
+                    src={PF + user.profilePicture}
+                    alt=""
+                  /> 
+                  :
+                  <img
+                    className="postProfileImg"
+                    src={PF + "person/noAvatar.png"}
+                    alt=""
+                  /> 
+
+                   
+        }       
+              {/* <img
+                className="postProfileImg"
+                src={
+                  user.profilePicture
+                    ?   user.profilePicture
+                    : PF + "person/noAvatar.png"
+                }
+                alt=""
+              /> */}
+            </Link>
         
       </div>
+      {/* <div className="topbarIconItem">
+            <ExitToApp />
+       
+          </div> */}
     </div>
   );
 }

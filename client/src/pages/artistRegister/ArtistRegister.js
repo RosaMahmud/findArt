@@ -14,17 +14,29 @@ function ArtistRegister() {
         const history = useHistory();
         const category = useRef();
 
-        const [items, setValue] = useState([
-          { label: "Photographer",value: "Photographer"},
-          { label: "Dancer", value: "Dancer" },
-          { label: "Painter", value: "Painter" },
-          { label: "Singer", value: "Singer" },
-          { label: "Musician", value: "Musician" },
-          { label: "Guitarist", value: "Guitarist" },
+        // const [items, setValue] = useState([
+        //   { label: "Photographer",value: "Photographer"},
+        //   { label: "Dancer", value: "Dancer" },
+        //   { label: "Painter", value: "Painter" },
+        //   { label: "Singer", value: "Singer" },
+        //   { label: "Musician", value: "Musician" },
+        //   { label: "Guitarist", value: "Guitarist" },
           
-        ]);
+        // ]);
 
+        const [items, setValue] = useState(
+          ["Photographer", "Dancer", "Painter","Singer", "Guitarist", "Drummer", "Band", "Choreographer", "Actor"])
       
+          const Add = items.map(Add => Add)
+
+          const handleChange = (e) => { 
+            console.clear(); 
+            console.log((items[e.target.value])); 
+            setRole(items[e.target.value]) 
+              }
+
+              const [role, setRole] = useState('Photographer')
+
         const handleClick = async (e) => {
           e.preventDefault();
           // setItem(items)
@@ -35,7 +47,7 @@ function ArtistRegister() {
               username: username.current.value,
               email: email.current.value,
               password: password.current.value,
-              category: category.current.value,
+              category: role,
               isClient: false
             };
             console.log("user data",user)
@@ -87,7 +99,7 @@ function ArtistRegister() {
                 type="password"
               />
 
-              <select>
+              {/* <select>
                 {items.map(item => (
                   <option
                     key={item.value}
@@ -98,7 +110,17 @@ function ArtistRegister() {
                     {item.label}
                   </option>
                 ))}
-              </select>
+              </select> */}
+
+            <select  
+            onChange={e => handleChange(e)} >
+            {
+                Add.map((address, key) => <option key={key} value={key}>{address} 
+                   </option>)
+            }
+        </select >
+
+       
              
 
        <button className="artistloginButton" type="submit">

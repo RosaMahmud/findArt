@@ -45,24 +45,16 @@ function Category({props}) {
         getUsers();
     }, []);
 
-    // const getSearchTerm = () => {
-    //     searchHandler(inputEl.current.value);
-    // }
+    
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-    },[users])
+    // },[users])
 
 
     return (
         <>
             <Topbar />
-
-            {/* <div className="categorySearch">
-                <input type="text" placeholder="Search categories" className="propmpt" 
-                value={searchTerm} onChange={getSearchTerm} ref={inputEl}/>
-                <i className="searchIcon"></i>
-            </div> */}
 
             <div className="categoryContainer">
 
@@ -73,15 +65,6 @@ function Category({props}) {
             term = {searchTerm}
             searchKeyword={searchHandler}
            /> 
-               {/* {users.map((user) => (
-                    user.isClient === false
-                        ? <div>
-                            <h2>{user.username}</h2>
-                            <h4>{user.category}</h4>
-                        </div>
-                        : null
-
-                ))}  */}
 
             </div>
         </>

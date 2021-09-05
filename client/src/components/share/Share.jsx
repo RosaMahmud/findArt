@@ -43,15 +43,26 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img
+          {/* <img
             className="shareProfileImg"
             src={
               user.profilePicture
-                ? PF + user.profilePicture
+                ?  user.profilePicture
                 : PF + "person/noAvatar.png"
             }
             alt=""
-          />
+          /> */}
+         
+              <img
+                className="postProfileImg"
+                src={
+                  user.profilePicture
+                    ?  user.profilePicture
+                    : PF + "person/noAvatar.png"
+                }
+                alt=""
+              />
+          
           <input
             placeholder={!user.isClient ? "Share your latest work " + user.username.toUpperCase() + "!"
                         :"What are you looking for, " + user.username.toUpperCase() + "?" }

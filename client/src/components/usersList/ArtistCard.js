@@ -8,14 +8,14 @@ const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 
 function ArtistCard(props) {
-    const {username, category, profilePicture, isClient} = props.user;
+    const {username, category, profilePicture} = props.user;
     
     return (
         <div className="wrapper">
             <div className="content">
                 {
-                    (isClient===false) 
-                ?<Link to={{pathname:`/profile/${username}`, state: {user: props.user}  }} style={{textDecoration:"none", color:"black"}}>
+                   
+                <Link to={{pathname:`/profile/${username}`, state: {user: props.user}  }} style={{textDecoration:"none", color:"black"}}>
                     <img
                   src={
                     profilePicture
@@ -28,7 +28,7 @@ function ArtistCard(props) {
                 <div className="header"><h3>{username}</h3></div>
                 <div><span className="CategoryName" >{category}</span></div>
                 </Link>
-                : [props.user]+1
+               
                 }
             </div>
             
