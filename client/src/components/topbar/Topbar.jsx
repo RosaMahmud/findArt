@@ -1,5 +1,5 @@
 import "./topbar.css";
-import { Public, Notifications, ExitToApp, Edit } from "@material-ui/icons";
+import { Public, Notifications, ExitToApp, Edit,Person } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -43,12 +43,12 @@ export default function Topbar() {
          
         </div>
         <div className="topbarIcons">
-          {/* <div className="topbarIconItem">
+          <div className="topbarIconItem">
           <Link to={`/profile/${user.username}`} style={{ color: "white" }}>
             <Person />
             </Link>
-            <span className="topbarIconBadge">1</span>
-          </div> */}
+            {/* <span className="topbarIconBadge">1</span> */}
+          </div>
            <div className="topbarIconItem">
            <Link to = "/edit/EditProfile"style={{ color: "white" }}>
             <Edit />
@@ -61,7 +61,7 @@ export default function Topbar() {
           </div>
          
         </div>
-        <Link to={`/profile/${user.username}`}>
+        {/* <Link to={`/profile/${user.username}`}>
         {user.profilePicture
                     ?   <img
                     className="postProfileImg"
@@ -75,24 +75,24 @@ export default function Topbar() {
                     alt=""
                   /> 
 
-                   
-        }       
-              {/* <img
+                  
+                }       
+              <img
                 className="postProfileImg"
                 src={
                   user.profilePicture
-                    ?   user.profilePicture
-                    : PF + "person/noAvatar.png"
+                  ?   user.profilePicture
+                  : PF + "person/noAvatar.png"
                 }
                 alt=""
-              /> */}
-            </Link>
+              />
         
+              </Link> */}
       </div>
-      {/* <div className="topbarIconItem">
+      <div className="topbarIconItem" style={{ color: "white" }}>
             <ExitToApp />
        
-          </div> */}
+          </div>
     </div>
   );
 }

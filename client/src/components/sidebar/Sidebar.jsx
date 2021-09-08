@@ -1,4 +1,6 @@
 import "./sidebar.css";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 import {
   RssFeed,
   Chat,
@@ -13,7 +15,12 @@ import {
 import { Users } from "../../dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
 
+
+
 export default function Sidebar() {
+
+  const { user } = useContext(AuthContext);
+  
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -22,14 +29,21 @@ export default function Sidebar() {
             <RssFeed className="sidebarIcon" />
             <span className="sidebarListItemText">Feed</span>
           </li> */}
+
           <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
             <span className="sidebarListItemText">Inbox</span>
           </li>
-          <li className="sidebarListItem">
-            <LiveTv className="sidebarIcon" />
-            <span className="sidebarListItemText">Go Live</span>
-          </li>
+
+          { (!user.isClient) && (
+           <li className="sidebarListItem">
+           <LiveTv className="sidebarIcon" />
+           <span className="sidebarListItemText">Go Live</span>
+         </li>
+          )
+          }
+
+          
           <li className="sidebarListItem">
             <Event className="sidebarIcon" />
             <span className="sidebarListItemText">Upcoming Events</span>

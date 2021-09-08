@@ -58,7 +58,7 @@ export default function Profile() {
                 src={
                   user.coverPicture
                     ? user.coverPicture
-                    : PF + "post/3.jpeg"
+                    : null
                 }
                 alt=""
               />

@@ -85,7 +85,7 @@ export default function Share() {
             <PermMedia htmlColor="tomato" className="shareIcon" />
             <span className="shareOptionText">Photo or Video</span>
             <input
-              style={{ display: "none" }}
+              style={{ display: "none", padding: "3px 7px" }}
               type="file"
               id="file"
               accept=".png,.jpeg,.jpg"
